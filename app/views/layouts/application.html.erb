@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Todo Web App</title>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="site-wrapper" class="container">
+
+      <!-- Flash messages for Devise Auth -->
+      <div id="alerts" class="alert-wrapper">
+        <p class="notice alert alert-primary alert-dismissable"><%= notice%><%= alert%></p>
+        <button type="button" class="close">&times;</button>
+      </div>
+
+      <div class="inner-wrapper">
+
+        <header class="clearfix">
+          <div class="inner">
+            <h3 class="brand">Ed's To Do List</h3>
+            <nav class="nav nav-tabs">
+              <%= link_to icon('home', '', class: 'fa-2x'), root_path, class: 'nav-link' %>
+
+              <% if user_signed_in? %>
+                  <%= link_to icon('user', '', class: 'fa-2x nav-link'), edit_user_registration_path %>
+                  <%= link_to icon('sign-out', '', class: 'fa-2x nav-link'), destroy_user_session_path, method: 'delete' %>
+                  <%= link_to icon('thumb-tack', '', class: 'fa-2x nav-link'), tasks_path %>
+                  <%= link_to icon('plus', '', class: 'fa-2x nav-link'), new_task_path %>
+              <% else %>
+                  <%= link_to icon('user-plus', '', class: 'fa-2x nav-link'), new_user_registration_path %>
+                  <%= link_to icon('sign-in', '', class: 'fa-2x nav-link'), new_user_session_path %>
+              <% end %>
+
+            </nav>
+          </div><!--/nav-->
+        </header>
+
+        <%= yield %>
+
+        <footer>
+          <div class="inner">
+            <br/><hr/>
+            <p>This is a simple and easy to use to do list web app that is developed with Ruby on Rails.</p>
+            <p>Created by Edward Storms 2017</p>
+          </div>
+        </footer>
+
+      </div><!--/inner-wrapper-->
+    </div><!--/site-wrapper-->
+  </body>
+</html>

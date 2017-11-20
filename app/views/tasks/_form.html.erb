@@ -1,0 +1,54 @@
+<%= form_with model: @task, local: true do |form| %>
+    <% if @task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+          <ul>
+            <% @task.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div><!--/error-->
+    <% end %>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :task %><br>
+          <%= form.text_field :task, autofocus: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :details %><br>
+          <%= form.text_area :details, class: 'form-control' %>
+        </div>
+      </div><!--/row-->
+
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :attachments %><br/>
+          <% @task.attachments.each do |a| %>
+              <%= link_to a.url.split("/").last, a.url %><br />
+          <% end %>
+
+          <br />
+          <%= form.file_field :attachments, multiple: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :due_date %><br>
+          <%= form.text_field :due_date, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :status %><br>
+          <%= select(:task, :status, %w[Pending Started On\ Hold Completed Archived], class: 'form-control') %>
+        </div>
+
+      </div><!--/col-->
+    </div><!--/row-->
+
+    <div class="actions form-group">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+
+<% end %>

@@ -1,0 +1,39 @@
+<%
+  @task_id_num_string = @task.id.to_s
+  @domain = 'http://localhost:3000'
+  @task_attacment_dir = @domain + "/uploads/task/attachments/" + @task_id_num_string + "/"
+  @dir = "#{Rails.root}/public/uploads/task/attachments/" + @task_id_num_string + "/*"
+  @files = Dir.glob(@dir)
+  @intersection = @files - @task.attachments
+%>
+
+<!--
+<% @task.attachments.each do |a| %>
+    <% link_to icon("trash"),
+                attachment_url(a),
+                method: :delete,
+                data: { confirm: 'Are you sure you would like to delete ' + a.url.split("/").last + '?' }
+    %>
+
+    <!--<%= link_to a.url.split("/").last, a.url %>-->
+    <br/>
+    <!--<% end %><br />-->
+
+<% if !@intersection.empty? %>
+    <%= @intersection.size %>
+    <strong>Attachments Found:</strong><br/>
+<% else %>
+    <p><strong>No Attachments Found.</strong></p>
+<% end %>
+
+<div class="attachment-name">
+<% @intersection.each do |file| %>
+    <!--<% file_name = file.split('/').last %>
+    <%= link_to icon("trash"),
+                @task_attacment_dir + file_name,
+                method: :delete,
+                data: { confirm: 'Are you sure you would like to delete ' + file_name + '?' }
+    %>-->
+    <%= link_to file_name, @task_attacment_dir + file_name %><br />
+<% end %>
+</div>

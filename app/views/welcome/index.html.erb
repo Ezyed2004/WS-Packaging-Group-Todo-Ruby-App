@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Welcome</h1>
+
+  <% if user_signed_in? %>
+      <p class="lead">You can access the tasks by clicking on the thumb tack in the menu.
+        To create a new task, simply click on the plus menu.</p>
+  <% else %>
+      <p class="lead">You must sign in or register, in order to view or change any tasks.
+  <% end %>
+
+  <%= image_tag("bg1.png", class: "img-fluid") %>
+
+</div>

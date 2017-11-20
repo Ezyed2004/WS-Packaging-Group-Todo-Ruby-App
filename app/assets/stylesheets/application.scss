@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+#site-wrapper{
+  vertical-align: middle;
+  height: 100%;
+  min-height: 100%;
+}
+
+#alerts{
+  display:inline-block;
+}
+
+#alerts p{
+  border: groove 3px #111111;
+  border-radius: 8px;
+  width: auto;
+}
+
+#alerts > .close{
+  display: inline;
+  position: relative;
+  top: -70px;
+  right: 5px;
+}
+
+/*.attachment-name{
+  position: relative;
+  top: -97px;
+  left: 19px;
+}*/
+
+.comment{
+  border: groove #fffafa 2px;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.comment a{
+  float: right;
+  position: relative;
+  top: -80px;
+}
